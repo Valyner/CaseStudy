@@ -2,12 +2,13 @@ import pandas as pd
 import numpy as np
 import json 
 from itertools import permutations
+from pandas.io.json import json_normalize
+from urllib.request import urlopen
+import requests
 
-# File directory değiştirilmelidir
-URL = 'getir_algo_input.json'
-with open(URL) as json_file:
-    data = json.load(json_file)
-    
+url = "https://raw.githubusercontent.com/Valyner/GetirCaseStudy/main/getir_algo_input.json"
+data = json.loads(requests.get(url).text)
+
 mat=pd.DataFrame(data['matrix'])
 vehicles=pd.DataFrame(data['vehicles'])
 job= pd.DataFrame(data['jobs'])
