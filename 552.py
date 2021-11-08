@@ -124,8 +124,17 @@ for i in range(0,int((len(df.index)/len(vehicles.index)))):
     df.iloc[i+2,11]=3
 df=df.sort_values("GrandTotal")
 
-for i in range(0,3):
-    print("For Vehicle %d, index of job(s) and Route %s" %(df.iloc[i,11],df.iloc[i,8]))
-print("TotalTime is %d" %(df.iloc[0,9]))
-                     
+#Dictionaryler oluşturularak JSON formatına çevirilmiştir.
+dict_son1={}
+dict_son4={}
+dict_son2={"total_delivery_duration":[],"routes":[]}
+for i in range(0,len(vehicles.index)):
+    dict_son1.update({"Jobs":str(df.iloc[i,8])})
+    dict_son1.update({"Delivery Durations":str(df.iloc[i,7])})
+    dict_son4[str(df.iloc[i,11])]=dict_son1.copy()
+
+    
+dict_son2={"total_delivery_duration" : str(df.iloc[0,9]),"Routes": dict_son4}
+app_json = json.dumps(dict_son2)
+print(app_json)                 
         
