@@ -4,7 +4,8 @@ import json
 from itertools import permutations
 
 # File directory değiştirilmelidir
-with open('D:/getir_algo_input.json') as json_file:
+URL = 'getir_algo_input.json'
+with open(URL) as json_file:
     data = json.load(json_file)
     
 mat=pd.DataFrame(data['matrix'])
